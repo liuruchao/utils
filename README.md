@@ -1,31 +1,31 @@
-# Utils - Utility Functions
+# Utils - 实用工具函数
 
-This repository provides useful JavaScript utility functions. Currently, it features an advanced deep copy function.
+本仓库提供有用的 JavaScript 工具函数。目前，它主要包含一个高级的深拷贝函数。
 
 ## `newDeepCopy(data)`
 
-The `newDeepCopy` function, located in `deepCopy.js`, creates a deep copy of a given JavaScript object or array.
+`newDeepCopy` 函数位于 `deepCopy.js` 文件中，用于创建一个给定 JavaScript 对象或数组的深拷贝副本。
 
-### Features:
+### 功能特性：
 
-*   **Comprehensive Deep Copying:** Recursively copies all nested objects and arrays, ensuring that the new structure is entirely independent of the original.
-*   **Handles Various Data Types:**
-    *   Correctly clones primitive types (numbers, strings, booleans, null, undefined, symbols if part of objects).
-    *   Deep copies properties of objects.
-    *   Deep copies elements of arrays.
-    *   Deep copies `Set` objects, including deep copying their elements.
-    *   Deep copies `Map` objects, including deep copying their keys and values if they are objects.
-    *   Copies functions by reference.
-*   **Circular Reference Handling:** Safely handles circular references within objects and arrays, preventing infinite loops and stack overflows. It uses a `WeakMap` internally to keep track of visited objects.
-*   **Type Preservation:** The primary structure (Object or Array) of the input data is preserved.
+*   **全面的深拷贝：** 递归复制所有嵌套的对象和数组，确保新结构完全独立于原始结构。
+*   **处理多种数据类型：**
+    *   正确克隆原始类型（数字、字符串、布尔值、null、undefined，以及对象中的 Symbol 类型）。
+    *   深拷贝对象的属性。
+    *   深拷贝数组的元素。
+    *   深拷贝 `Set` 对象，包括深拷贝其元素。
+    *   深拷贝 `Map` 对象，包括深拷贝其键和值（如果它们是对象）。
+    *   函数通过引用复制。
+*   **循环引用处理：** 安全地处理对象和数组中的循环引用，防止无限循环和栈溢出。内部使用 `WeakMap` 来跟踪已访问的对象。
+*   **类型保留：** 输入数据的主要结构（对象或数组）将被保留。
 
-### Usage:
+### 用法：
 
-The function expects an object or an array as its input. It will throw a `TypeError` if the input is not an object (e.g., a primitive type directly).
+该函数期望接收一个对象或数组作为输入。如果输入不是对象（例如，直接输入原始类型），它将抛出 `TypeError`。
 
 ```javascript
-// Import or load newDeepCopy from deepCopy.js
-// const newDeepCopy = require('./deepCopy'); // If using CommonJS modules
+// 从 deepCopy.js 导入或加载 newDeepCopy
+// const newDeepCopy = require('./deepCopy'); // 如果使用 CommonJS 模块
 
 const original = {
     name: "Original",
@@ -36,7 +36,7 @@ const original = {
     },
     circular: null
 };
-original.circular = original; // Create a circular reference
+original.circular = original; // 创建一个循环引用
 
 const copied = newDeepCopy(original);
 
@@ -48,9 +48,9 @@ console.log(copied.details.history[0] !== original.details.history[0]); // true
 console.log(copied.circular === copied); // true
 ```
 
-### Testing:
+### 测试：
 
-The `deepCopy.js` file includes a comprehensive suite of inline tests using `console.assert` and `console.log`. These tests cover various scenarios, including nested structures, different data types, and circular references, to ensure the function's correctness. You can run the file directly (e.g., with Node.js) to see the test results.
+`deepCopy.js` 文件包含一套使用 `console.assert` 和 `console.log` 实现的综合性内联测试。这些测试覆盖了各种场景，包括嵌套结构、不同数据类型和循环引用，以确保函数的正确性。您可以直接运行该文件（例如，使用 Node.js）来查看测试结果。
 
 ```sh
 node deepCopy.js
